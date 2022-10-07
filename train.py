@@ -7,7 +7,7 @@
 @ Description   :   None
 @ Function List :   func1() -- func desc1
 @ Class List    :   Class1 -- class1 desc1
-@ Details       :   None
+@ Details       :   python train.py --batch_size 20 --learning_rate 2e-2
 """
 
 import argparse
@@ -21,7 +21,7 @@ def train(config):
     model = LinearModel()
     learning_rate = config.learning_rate
     dataloader = iter(BatchDataLoader("./sgd_data.CSV", config.batch_size))
-    for iter_id in range(5000):
+    for iter_id in range(20):
         for data, label in dataloader:
             learning_rate = config.learning_rate
             y_pred = model.forward(data)
