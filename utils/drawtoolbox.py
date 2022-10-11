@@ -10,19 +10,24 @@
 @ Details       :   None
 """
 
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-def draw_loss(x_list, loss_list, save_path):
-    sns.lineplot(x=x_list, y=loss_list)
-    plt.xlabel("batch")
+def draw_loss(x_list, loss_list, args_list, save_path, title):
+    for i in range(len(loss_list)):
+        plt.plot(x_list[i], loss_list[i])
+
+    plt.legend((args_list), loc="upper right")
+    plt.xlabel("iter")
     plt.ylabel("loss")
-    plt.show()
+    plt.title(title)
     plt.savefig(save_path)
+    plt.show()
 
 
-if __name__ == "__main__":
-    x_list = [0, 0.5, 1, 1.5, 2, 2.5]
-    loss_list = [10, 1, 1, 1, 1, 1]
-    draw_loss(x_list, loss_list, "./demo.png")
+def draw_loss_single(x_list, loss_list, save_path):
+    plt.plot(x_list, loss_list)
+    plt.xlabel("iter")
+    plt.ylabel("loss")
+    plt.savefig(save_path)
+    plt.show()
