@@ -5,9 +5,7 @@
 @ Version       :   1.0
 @ Contact       :   chengky18@icloud.com
 @ Description   :   None
-@ Function List :   func1() -- func desc1
-@ Class List    :   Class1 -- class1 desc1
-@ Details       :   
+@ Details       :   None
 """
 
 import argparse
@@ -49,20 +47,32 @@ def train(config):
             loss_log.append(loss)
             x_log.append(iter_id + batch_num * config.bs / dataloader.data_num)
             batch_num += 1
+    LOGGER.info("Result:")
     print(model.beta)
     return x_log, loss_log
 
 
 def main(config):
-    LOGGER.info("Start")
+    LOGGER.warning("Start")
+    LOGGER.info("config list")
+    print("\tbatch size: {}".format(config.bs))
+    print("\tlearning rate: {}".format(config.lr))
+    print("\titer: {}".format(config.iter))
+    print("\tback line search: {}".format(config.bls))
+    print("\tcompare batch size: {}".format(config.compbs))
+    print("\tcompare back line search: {}".format(config.compbls))
+    print("\timg dir: {}".format(config.img_path))
+    print("\tdata path: {}".format(config.data_path))
+
     x_list = []
     loss_list = []
     if config.compbs:
+        # compare batch size
         img_name = config.img_path + "img-bs_compare-iter_{}-bls_{}-lr_{}.png".format(
             config.iter, config.bls, config.lr
         )
-        # batch_size_list = [1, 10, 50, 100, 500, 1000, 4000]
-        batch_size_list = [1, 20, 4000]
+        batch_size_list = [1, 10, 50, 100, 500, 1000, 4000]
+        # batch_size_list = [1, 20, 4000]
         for batch_size in batch_size_list:
             config.bs = batch_size
             x_log, loss_log = train(config)
@@ -72,6 +82,7 @@ def main(config):
             x_list, loss_list, batch_size_list, img_name, "loss curve & batch size"
         )
     elif config.compbls:
+        # compare back line search
         img_name = config.img_path + "img-bs_{}-iter_{}-bls_compare-lr_{}.png".format(
             config.bs, config.iter, config.lr
         )
@@ -89,7 +100,8 @@ def main(config):
         )
         x_log, loss_log = train(config)
         draw_loss_single(x_log, loss_log, img_name)
-    LOGGER.info("Done")
+    LOGGER.info("Save img -> {}".format(img_name))
+    LOGGER.warning("Done")
 
 
 if __name__ == "__main__":

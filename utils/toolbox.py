@@ -5,8 +5,8 @@
 @ Version       :   1.0
 @ Contact       :   chengky18@icloud.com
 @ Description   :   None
-@ Function List :   func1() -- func desc1
-@ Class List    :   Class1 -- class1 desc1
+@ Function List :   log_color() -- color
+                    str2bool() -- args
 @ Details       :   None
 """
 
@@ -17,10 +17,10 @@ import colorlog
 
 
 def log_color():
-    """彩色log
+    """color log
 
     Returns:
-        color_logger (log): 封装变量
+        color_logger (log): logger
     """
     color_logger = logging.getLogger("ROOT")
     color_logger.setLevel(logging.DEBUG)

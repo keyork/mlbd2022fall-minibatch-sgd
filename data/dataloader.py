@@ -4,9 +4,8 @@
 @ Author        :   Cheng Kaiyue
 @ Version       :   1.0
 @ Contact       :   chengky18@icloud.com
-@ Description   :   None
-@ Function List :   func1() -- func desc1
-@ Class List    :   Class1 -- class1 desc1
+@ Description   :   load data file and pack -> dataloader
+@ Class List    :   BatchDataLoader -- data loader
 @ Details       :   None
 """
 

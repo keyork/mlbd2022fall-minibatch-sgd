@@ -4,9 +4,9 @@
 @ Author        :   Cheng Kaiyue
 @ Version       :   1.0
 @ Contact       :   chengky18@icloud.com
-@ Description   :   None
-@ Function List :   func1() -- func desc1
-@ Class List    :   Class1 -- class1 desc1
+@ Description   :   DRAW!!!
+@ Function List :   draw_loss() -- draw loss list, compare exp
+                    draw_loss_single() -- draw single loss list
 @ Details       :   None
 """
 
