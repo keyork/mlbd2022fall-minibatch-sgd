@@ -7,7 +7,7 @@
 @ Description   :   None
 @ Function List :   func1() -- func desc1
 @ Class List    :   Class1 -- class1 desc1
-@ Details       :   python train.py --batch_size 20 --learning_rate 2e-2
+@ Details       :   
 """
 
 import argparse

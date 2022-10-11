@@ -4,6 +4,14 @@ Machine Learning & Big Data 2022 Fall homework 1: mini batch-sgd
 
 https://github.com/keyork/mlbd2022fall-minibatch-sgd
 
+## Usage
+
+```
+pip install numpy pandas matplotlib colorlog
+python train.py -h
+python train.py --args ...
+```
+
 ## Task
 
 - Using Mini-batch gradient descent for the example in slides 31-33
@@ -12,12 +20,7 @@ https://github.com/keyork/mlbd2022fall-minibatch-sgd
 
 ## Model
 
-Four main parts:
-
-- Dataloader
-- Linear Model
-- SGD
-- Back Line Search
+Four main parts: Dataloader, Linear Model, SGD, Back Line Search
 
 ### Dataloader
 
