@@ -11,30 +11,46 @@
 """
 
 import argparse
-from dataloader import BatchDataLoader
-from model import LinearModel
-from utils import loss_func, optimizer
+
+from data.dataloader import BatchDataLoader
+from model.model import LinearModel
+from utils.toolbox import LOGGER, str2bool
+from utils.sgdtoolbox import bl_search, loss_func, optimizer
+from utils.drawtoolbox import draw_loss
 
 
 def train(config):
 
     model = LinearModel()
-    learning_rate = config.learning_rate
-    dataloader = iter(BatchDataLoader("./sgd_data.CSV", config.batch_size))
-    for iter_id in range(20):
+    learning_rate = config.lr
+    dataloader = iter(BatchDataLoader("./data/sgd_data.CSV", config.bs))
+    loss_log = []
+    x_log = []
+    for iter_id in range(10):
+        iter_loss = 0
+        batch_num = 0
         for data, label in dataloader:
-            learning_rate = config.learning_rate
             y_pred = model.forward(data)
             loss, loss_list = loss_func(y_pred, label)
+            if config.bls:
+                learning_rate = bl_search(
+                    label, data, learning_rate, 1e-2, 0.1, 0.8, model, loss, loss_list
+                )
             optimizer(model, loss_list, data, learning_rate)
-            print(loss)
+            iter_loss += loss
+            loss_log.append(loss)
+            x_log.append(iter_id + batch_num / config.bs)
+            batch_num += 1
+        print(iter_loss / batch_num)
     print(model.beta)
+    draw_loss(x_log, loss_log, "./img/demo.png")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--batch_size", type=int, help="batch_size")
-    parser.add_argument("--learning_rate", type=float, help="learning_rate")
+    parser.add_argument("--bs", type=int, default=50, help="batch size")
+    parser.add_argument("--lr", type=float, default=1, help="learning rate")
+    parser.add_argument("--bls", type=str2bool, default=True, help="back line search")
     args = parser.parse_args()
 
     train(args)
