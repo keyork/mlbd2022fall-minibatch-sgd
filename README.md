@@ -33,17 +33,17 @@ Using array \* array in numpy directly instead of circulate, args is also a np.a
 ### SGD
 
 $$
-\beta = \beta - learning\_ rate \cdot \frac{(f(x)-y)\cdot x}{batch\_ size}
+\beta = \beta - learningrate \cdot \frac{(f(x)-y)\cdot x}{batchsize}
 $$
 
 ### Back Line Search
 
 $$
-loss(x+learning\_ rate\cdot \nabla loss(x))\leq loss(x)+c_1\cdot learning\_ rate\cdot (\nabla loss(x))^2
+loss(x+learningrate\cdot \nabla loss(x))\leq loss(x)+c_1\cdot learningrate\cdot (\nabla loss(x))^2
 $$
 
 $$
-\nabla loss(x+learning\_ rate\cdot \nabla loss(x))\geq c_2 (\nabla loss(x))^2
+\nabla loss(x+learningrate\cdot \nabla loss(x))\geq c_2 (\nabla loss(x))^2
 $$
 
 $$
